@@ -1,13 +1,8 @@
 import './app.css'
-import MapLeaflet from "./components/MapLeaflet.tsx";
+import BasePage from "./pages/BasePage.tsx";
+import React from "react";
 
-function App() {
-    return (
-        <div>
-            <h1>Brasil</h1>
-            <MapLeaflet/>
-        </div>
-    )
+export default function App() {
+    const [index, setIndex] = React.useState(0);
+    return <BasePage index={index} setIndex={setIndex}/>;
 }
-
-export default App
