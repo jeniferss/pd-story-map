@@ -1,16 +1,11 @@
-import {useCallback, useRef, useState} from 'react';
+import {useRef} from 'react';
 import RasterLayer from '../../components/RasterLayer';
 import GeoJsonLayer, {type GeoJsonLayerRef} from "../../components/ShapeFileLayer.tsx";
 import MapAnimation from "../../components/MapAnimation.tsx";
 
 export default function JacareiAreas() {
-    const [lstGeoraster, setLstGeoraster] = useState<any>(null);
-
     const jacareiLayerRef = useRef<GeoJsonLayerRef>(null);
 
-    const handleLstReady = useCallback((gr: any) => {
-        setLstGeoraster(gr);
-    }, []);
 
     return (
         <>
@@ -62,7 +57,6 @@ export default function JacareiAreas() {
             <RasterLayer
                 url="src/data/LST.tif"
                 opacity={0}
-                onReady={handleLstReady}
                 fitBounds={false}
             />
 
