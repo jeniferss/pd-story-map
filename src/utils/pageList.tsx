@@ -11,7 +11,7 @@ const pageList = [
     {
         title: "Como navegar pelo Story Map",
         textContext: (
-            <ul>
+            <ul style={{lineHeight: "1.5"}}>
                 <li><strong>Mapa Interativo:</strong> você pode dar zoom, arrastar, e clicar em camadas.</li>
                 <li><strong>Títulos e Textos:</strong> ajudam a entender o que cada mapa está mostrando.</li>
                 <li><strong>Gráficos e Visualizações:</strong> mostram relações importantes, como temperatura da
@@ -98,7 +98,7 @@ const pageList = [
         zoom: CONSTS.JACAREI_ZOOM
     },
     {
-        title: "Jacareí - Áreas",
+        title: "Classe de Uso do Solo",
         textContext: (
             <div style={{
                 maxHeight: "calc(90vh - 12rem)",
@@ -133,11 +133,7 @@ const pageList = [
                     <br></br>
                     <br></br>
 
-                    Além disso, dentro das áreas urbanas existe um conceito importante para entender a desigualdade no
-                    calor urbano: o de assentamentos precários.
-                    Considera-se um assentamento precário quando há domicílios sujeitos a condições de irregularidade ou
-                    risco do
-                    local geográfico em que estão. <ReferenceTag number={1} title="Estima Jacareí"
+                    Além disso, dentro das áreas urbanas existe um conceito importante para entender a desigualdade no calor urbano, o de assentamentos precários. Esse termo se refere a regiões onde os domicílios apresentam algum tipo de irregularidade, falta de infraestrutura básica ou estão localizados em áreas de risco <ReferenceTag number={1} title="Estima Jacareí"
                                                                  url="https://cefavela.ufabc.edu.br/estima-favelas-estimativas-multidimensionais-das-necessidades-habitacionais-em-favelas/"/>
                     <br></br>
                     <br></br>
@@ -155,6 +151,187 @@ const pageList = [
         center: CONSTS.JACAREI_CENTER,
         zoom: CONSTS.JACAREI_ZOOM
     },
+    {
+        title: "A Base do Estudo",
+        textContext: (
+            <div style={{
+                maxHeight: "calc(90vh - 12rem)",
+                overflowY: "auto",
+                paddingRight: "0.5rem"
+            }}>
+                <p style={{textAlign: "justify", lineHeight: "1.5"}}>Para além disso, queremos entender como as
+                    construções da cidade podem estar relacionadas à temperatura da superfície. Para isso, vamos
+                    utilizar uma série de indicadores de inadequação habitacional, que ajudam a identificar regiões onde
+                    as condições das moradias podem aumentar a vulnerabilidade ao calor.
+                    <br></br>
+                    <br></br>
+
+                    Esses dados vêm de um projeto de extensão da UFABC realizado em parceria com o CEFAVELA (Centro de
+                    Estudos da Favela) e a Prefeitura de Jacareí. Esse projeto desenvolveu uma metodologia própria para
+                    identificar diferentes formas de inadequação e déficits nas moradias do município.
+
+                    <br></br>
+                    <br></br>
+
+                    Porém, por questões de LGPD, as informações não são mostradas individualmente, elas aparecem no
+                    formato de densidade, ou seja, em mapas que indicam quantas ocorrências de cada inadequação existem
+                    em determinadas áreas.
+                    <br></br>
+                    <br></br>
+
+                    A seguir, estão alguns dos indicadores usados no estudo. Eles mostram diferentes tipos de condições
+                    inadequadas presentes nas moradias:
+                </p>
+
+                <table style={{
+                        width: "100%",
+                        borderCollapse: "collapse",
+                        marginTop: "1rem"
+                    }}>
+                        <thead>
+                        <tr style={{borderBottom: "0.125rem solid #ddd"}}>
+                            <th style={{
+                                padding: "0.75rem 2rem 0.75rem 0",
+                                textAlign: "left",
+                                fontWeight: "600",
+                                borderBottom: "0.15rem solid #333"
+                            }}>Indicador
+                            </th>
+                            <th style={{
+                                padding: "0.75rem 0",
+                                textAlign: "left",
+                                fontWeight: "600",
+                                borderBottom: "0.15rem solid #333"
+                            }}>Descrição
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Domicílios em Assentamentos Precários sem
+                                Previsão de Remoção
+                            </td>
+                            <td style={{padding: "0.75rem 0"}}>Mostra domicílios localizados em assentamentos precários,
+                                sem previsão oficial de remoção ou realocação.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Densidade Excessiva</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando três ou mais pessoas dividem o mesmo cômodo usado
+                                como dormitório, indicando pouco espaço para a quantidade de moradores.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Banheiro</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando o domicílio não possui banheiro.</td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Material de Piso Inadequado</td>
+                            <td style={{padding: "0.75rem 0"}}>Piso feito de terra ou de madeira reaproveitada.</td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Água Canalizada</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando não há água encanada dentro do domicílio.</td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Coleta e Tratamento de Esgoto
+                            </td>
+                            <td style={{padding: "0.75rem 0"}}>Quando o esgoto é descartado em fossa rudimentar, vala a
+                                céu aberto, rios, lagos, mar ou outras formas inadequadas.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Abastecimento de Água por Rede
+                                Pública
+                            </td>
+                            <td style={{padding: "0.75rem 0"}}>Quando a água vem de poço, nascente, cisterna ou outras
+                                fontes alternativas, em vez de rede pública.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Energia Elétrica Adequada</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando a iluminação é feita sem medidor ou com fontes
+                                como óleo, querosene, gás, vela ou outras formas inadequadas.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ausência de Coleta de Lixo</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando o lixo é queimado, enterrado na propriedade,
+                                jogado em terreno baldio, rua, rio, mar ou tem outro destino irregular.
+                            </td>
+                        </tr>
+                        <tr style={{borderBottom: "0.0625rem solid #ddd"}}>
+                            <td style={{padding: "0.75rem 2rem 0.75rem 0"}}>Ônus Excessivo com Aluguel</td>
+                            <td style={{padding: "0.75rem 0"}}>Quando a família gasta 30% ou mais da renda total com
+                                aluguel.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
+        ),
+        mapContent: null,
+        mapDescription: null,
+        center: CONSTS.JACAREI_CENTER,
+        zoom: CONSTS.JACAREI_ZOOM
+    },
+    {
+        title: "Juntando o quebra-cabeça",
+        textContext: (
+            <div style={{
+                maxHeight: "calc(90vh - 12rem)",
+                overflowY: "auto",
+                paddingRight: "0.5rem"
+            }}>
+                <p style={{textAlign: "justify", lineHeight: "1.5"}}>
+                    Agora que já conhecemos os indicadores de inadequação habitacional, podemos observar como eles se
+                    relacionam com a temperatura da superfície (LST). Esse tipo de análise é chamado
+                    de <strong>correlação</strong>, que mostra o quanto duas variáveis variam juntas, ou seja, se quando uma aumenta, a outra também tende a aumentar, se uma cresce enquanto a outra diminui, ou se não existe um padrão entre elas.
+                    <br></br>
+                    <br></br>
+                    Mas atenção, <strong>correlação não significa causalidade</strong>, ou seja, duas coisas podem estar
+                    relacionadas sem que uma necessariamente cause a outra.
+                    <br></br>
+                    <br></br>
+                    De forma geral, os resultados mostram que a maior parte dos indicadores de inadequação habitacional
+                    tem correlação positiva com a temperatura. Isso quer dizer que, nas áreas onde a LST é mais alta,
+                    costuma haver também mais ocorrências de domicílios com ou em:
+                </p>
+
+                <ul style={{lineHeight: "1.5"}}>
+                    <li>Ônus excessivo com aluguel</li>
+                    <li>Assentamentos precários</li>
+                    <li>Densidade excessiva</li>
+                    <li>Piso inadequado</li>
+                    <li>Ausência de banheiro</li>
+                    <li>Ausência de água canalizada ou pública</li>
+                    <li>Ausência de energia adequada</li>
+                </ul>
+
+                <p style={{textAlign: "justify", lineHeight: "1.5"}}>
+                    Essas correlações variam de fracas a fortes, mostrando que o calor tende a se concentrar justamente
+                    onde as condições de moradia são mais frágeis.
+                    <br></br>
+                    <br></br>
+                    Por outro lado, alguns indicadores apresentam correlações negativas muito fracas, como ausência de
+                    abastecimento por rede pública, ausência de coleta de lixo e ausência de esgoto adequado.
+                    Isso significa que, nesses casos, o aumento da temperatura não acompanha o aumento da
+                    densidade de domicílios com essas inadequações.
+                    <br></br>
+                    <br></br>
+                    <strong>Em resumo,</strong> as áreas mais quentes tendem a ser também aquelas com mais sinais de
+                    vulnerabilidade urbana, reforçando a relação entre infraestrutura, desigualdade e exposição ao
+                    calor.
+                </p>
+            </div>
+        ),
+        imageContent: "matriz_correlacao_indicadores.png",
+        mapContent: null,
+        mapDescription: null,
+        center: CONSTS.JACAREI_CENTER,
+        zoom: CONSTS.JACAREI_ZOOM
+    },
+
 ];
 
 export default pageList;
