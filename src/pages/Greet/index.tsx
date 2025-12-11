@@ -26,8 +26,8 @@ const slides = [
                     {" "}e parecem muito mais quentes do que outras?
                 </Paragraph>
                 <Paragraph style={{textAlign: "justify", fontSize: "1rem"}}>
-                    Neste projeto, vamos olhar para um recorte do mundo real: o município de Jacareí no estado de São
-                    Paulo.
+                    Neste projeto, vamos olhar para um recorte do município de Jacareí no estado de São
+                    Paulo no ano de 2024.
                     A partir dele, vamos entender como inadequações na moradia podem deixar alguns grupos mais expostos
                     ao calor urbano.
                 </Paragraph>
@@ -45,7 +45,7 @@ const slides = [
                     Mudanças no clima e problemas urbanos não são temas distantes da nossa rotina. Eles afetam
                     diretamente a qualidade de vida das pessoas, especialmente em áreas com infraestrutura mais frágil.
                     Para entender melhor esse desafio, vamos nos apoiar em dois Objetivos de Desenvolvimento Sustentável
-                    (ODS) da ONU:
+                    (ODS) da ONU.
                 </Paragraph>
 
                 <div style={{
@@ -103,7 +103,7 @@ const slides = [
                         }
                     >
                         <Card.Meta
-                            description={<span style={{fontSize: "0.85rem"}}>Fala sobre preparar comunidades para eventos climáticos extremos, como as ondas de calor, que tendem a aumentar com o aquecimento global.</span>}
+                            description={<span style={{fontSize: "0.85rem"}}>Fala sobre preparar comunidades para eventos climáticos extremos, como as ondas e ilhas de calor, que tendem a aumentar com o aquecimento global.</span>}
                         />
                     </Card>
                 </div>

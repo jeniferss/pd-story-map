@@ -1,10 +1,12 @@
-import React from "react";
-import {Button, Typography} from "antd";
+import React, {useState} from "react";
+import {Button, Modal, Typography} from "antd";
+import {InfoCircleOutlined} from "@ant-design/icons";
 import MapLeaflet from "../../components/MapLeaflet.tsx";
+import LayerCleaner from "../../components/LayerCleaner.tsx";
 import pageList from "../../utils/pageList.tsx";
 import {styles} from "./styles.ts";
 
-const {Title, Paragraph} = Typography;
+const {Title} = Typography;
 
 type BasePageProps = {
     index: number;
@@ -14,11 +16,7 @@ type BasePageProps = {
 
 export default function BasePage({index, setIndex}: BasePageProps) {
     const page = pageList[index];
-
-    const [mapKey, setMapKey] = React.useState(() => `map-${index}-${Date.now()}`);
-    React.useEffect(() => {
-        setMapKey(`map-${index}-${Date.now()}`);
-    }, [index]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const goPrev = React.useCallback(() => {
         setIndex(i => Math.max(0, i - 1));
@@ -28,19 +26,33 @@ export default function BasePage({index, setIndex}: BasePageProps) {
         setIndex(i => Math.min(pageList.length - 1, i + 1));
     }, [setIndex]);
 
+    const hasMapDescription = !!page.mapDescription;
+
     return (
         <>
             <div style={styles.containerStyle}>
-                <div style={styles.leftColStyle}>
-                    <Title>{page.title}</Title>
-                    <Paragraph>{page.textContext}</Paragraph>
+                <div style={{...styles.leftColStyle, display: "flex", flexDirection: "column"}}>
 
-                    <div style={styles.fixedControlsStyle}>
+                    <Title style={{margin: 0, marginBottom: "1rem"}}>{page.title}</Title>
+
+                    <div style={{flex: 1, marginBottom: "1rem"}}>
+                        {page.textContext}
+                    </div>
+
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        gap: "1rem",
+                        paddingTop: "1rem",
+                        borderTop: "1px solid #e0e0e0"
+                    }}>
                         <Button
                             variant="filled"
                             color="purple"
                             onClick={goPrev}
                             disabled={index === 0}
+                            style={{minWidth: "7.5rem"}}
                         >
                             Anterior
                         </Button>
@@ -49,6 +61,7 @@ export default function BasePage({index, setIndex}: BasePageProps) {
                             color="purple"
                             onClick={goNext}
                             disabled={index >= pageList.length - 1}
+                            style={{minWidth: "7.5rem"}}
                         >
                             Próximo
                         </Button>
@@ -57,15 +70,47 @@ export default function BasePage({index, setIndex}: BasePageProps) {
 
                 <div style={styles.rightColStyle}>
                     <MapLeaflet
-                        key={mapKey}
                         center={page.center}
                         zoom={page.zoom}
                         style={{width: "100%", height: "90vh"}}
                     >
+                        <LayerCleaner triggerIndex={index}/>
                         {page.mapContent}
                     </MapLeaflet>
+
+                    {hasMapDescription && (
+                        <Button
+                            type="primary"
+                            shape="circle"
+                            size="large"
+                            icon={<InfoCircleOutlined/>}
+                            onClick={() => setIsModalOpen(true)}
+                            style={{
+                                position: "absolute",
+                                right: "1rem",
+                                bottom: "1rem",
+                                zIndex: 1000
+                            }}
+                        />
+                    )}
                 </div>
             </div>
+
+            {hasMapDescription && (
+                <Modal
+                    title="Legenda"
+                    open={isModalOpen}
+                    onCancel={() => setIsModalOpen(false)}
+                    footer={null}
+                    style={{
+                        position: "fixed",
+                        left: "5rem",
+                        top: "5rem"
+                    }}
+                >
+                    {page.mapDescription}
+                </Modal>
+            )}
 
         </>
     );

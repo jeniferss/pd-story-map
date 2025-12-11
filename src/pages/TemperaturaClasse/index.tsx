@@ -1,9 +1,7 @@
 import {useCallback, useRef, useState} from 'react';
-import RasterLayer from '../components/RasterLayer';
-import HoverValuePopup from '../components/HoverValuePopUp';
-import GeoJsonLayer, {type GeoJsonLayerRef} from "../components/ShapeFileLayer.tsx";
-import MapAnimation from "../components/MapAnimation.tsx";
-import lstColorFn from '../utils/LstPalette';
+import RasterLayer from '../../components/RasterLayer';
+import GeoJsonLayer, {type GeoJsonLayerRef} from "../../components/ShapeFileLayer.tsx";
+import MapAnimation from "../../components/MapAnimation.tsx";
 
 export default function JacareiAreas() {
     const [lstGeoraster, setLstGeoraster] = useState<any>(null);
@@ -33,6 +31,23 @@ export default function JacareiAreas() {
                 layerId="assentamentos"
                 dataUrl="src/data/assentamentos_precarios_jacarei.geojson"
                 style={{color: '#E53935', weight: 2, fillOpacity: 0.1}}
+                eventHandlers={{
+                    click: (e: any) => {
+                        const props = e.propagatedFrom?.feature?.properties;
+                        if (props?.nome) {
+                            e.propagatedFrom.bindPopup(`
+                                        <div style="font-family: system-ui, sans-serif;">
+                                            <h3 style="margin: 0 0 0.625rem 0; font-size: 0.875rem; color: #2F2F2F;">
+                                                ${props.nome}
+                                            </h3>
+                                            <div style="font-size: 0.8125rem; color: #B6B6B6;">
+                                                <p style="margin: 0.375rem 0;"><strong>Domicílios:</strong> ${props.domicilios}</p>
+                                            </div>
+                                        </div>
+                                    `).openPopup();
+                        }
+                    }
+                }}
             />
 
             <MapAnimation
@@ -46,22 +61,11 @@ export default function JacareiAreas() {
 
             <RasterLayer
                 url="src/data/LST.tif"
-                opacity={0.75}
-                colorFn={lstColorFn}
+                opacity={0}
                 onReady={handleLstReady}
                 fitBounds={false}
             />
 
-            <HoverValuePopup
-                getGeoraster={() => lstGeoraster}
-            />
-
-            {/*<LayersLegend layers={[*/}
-            {/*    { name: 'Limite Municipal', color: '#2A3E5B', type: 'polygon' },*/}
-            {/*    { name: 'Assentamentos Precários', color: '#E53935', type: 'polygon' },*/}
-            {/*    { name: 'Área Urbana', color: '#7B1FA2', type: 'polygon' },*/}
-            {/*    { name: 'Temperatura Superficial (LST)', color: '#FFA500', type: 'raster' }*/}
-            {/*]} />*/}
         </>
     );
 }

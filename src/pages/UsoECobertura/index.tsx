@@ -1,9 +1,9 @@
 import {useCallback, useRef, useState} from 'react';
-import RasterLayer from '../components/RasterLayer';
-import HoverValuePopup from '../components/HoverValuePopUp';
-import mapBiomasColorFn from '../utils/MapbiomasPallete';
-import GeoJsonLayer, {type GeoJsonLayerRef} from "../components/ShapeFileLayer.tsx";
-import MapAnimation from "../components/MapAnimation.tsx";
+import RasterLayer from '../../components/RasterLayer';
+import HoverValuePopup from '../../components/HoverValuePopUp';
+import mapBiomasColorFn from '../../utils/MapbiomasPallete';
+import GeoJsonLayer, {type GeoJsonLayerRef} from "../../components/ShapeFileLayer.tsx";
+import MapAnimation from "../../components/MapAnimation.tsx";
 
 export default function TempUseShow() {
     const [lstGeoraster, setLstGeoraster] = useState<any>(null);
@@ -56,7 +56,6 @@ export default function TempUseShow() {
                 getGeoraster={() => lstGeoraster}
             />
 
-            {/*<MapBiomasLegend georaster={lulacGeoraster} />*/}
         </>
     );
 }

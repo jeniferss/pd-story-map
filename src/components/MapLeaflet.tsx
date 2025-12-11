@@ -11,9 +11,9 @@ type MapLeafletProps = {
     center: LatLngExpression;
     zoom: number;
     children?: React.ReactNode;
-
     style?: React.CSSProperties;
 };
+
 
 export default function MapLeaflet({
                                        center,
@@ -27,15 +27,22 @@ export default function MapLeaflet({
                 center={center}
                 zoom={zoom}
                 scrollWheelZoom={true}
-
                 style={{width: "100%", height: "100%"}}
 
-                minZoom={4}
-                maxZoom={30}
+                wheelDebounceTime={200}
+                wheelPxPerZoomLevel={160}
+
+                minZoom={10}
+                maxZoom={13}
             >
-                <TileLayer
+                {/* <TileLayer
                     url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
                     attribution="&copy; Stadia Maps & OpenMapTiles & OpenStreetMap"
+                /> */}
+
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
 
                 {children}
