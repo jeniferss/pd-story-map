@@ -11,7 +11,7 @@ export default function JacareiIntro() {
             <GeoJsonLayer
                 ref={jacareiLayerRef}
                 layerId="jacarei"
-                dataUrl="src/data/limite_municipal_jacarei_2024.geojson"
+                dataUrl="limite_municipal_jacarei_2024.geojson"
                 style={{color: '#2A3E5B', weight: 2, fillOpacity: 0.2}}
             />
 
